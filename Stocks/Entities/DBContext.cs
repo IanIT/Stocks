@@ -5,8 +5,7 @@ namespace Stocks.Entities {
   using System.Linq;
 
   public partial class DBContext : DbContext {
-    public DBContext()
-        : base("name=DBContext") {
+    public DBContext()        : base("name=DBContext") {
     }
 
     public virtual DbSet<Share> Shares { get; set; }
