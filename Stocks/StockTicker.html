@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>SqlTableDependencly with SignalR</title>
+  <link href="Content/bootstrap.min.css" rel="stylesheet" />
+  <!--<link href="../Content/StockTicker.css" rel="stylesheet" />-->
+</head>
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>SqlTableDependency with SignalR</h1>
+
+      <p>
+        <a href="https://tabledependency.codeplex.com/" target="_blank">TableDependency</a> is a generic C# component used to send events when table content change.<br />
+        There are implementations for SQL Server and ORACLE. From those databases, TableDependency receive notifications that in turn are transformed in events containing a model populated with table value changed relative to the Insert/Update/Delete operation performed.
+        TableDependency work generating on the fly database objects as Queue, Service Broker, Trigger and Stored procedure. Those object are dropped once the TableDependency is disposed.
+      </p>
+    </div>
+
+
+
+    <div class="row">
+      <div id="stockTable" class="col-sm-6">
+        <table class="table table-bordered table-condensed table-hover table-striped">
+          <caption>Stock Table</caption>
+          <thead style="background-color:silver">
+            <tr>
+              <th>Id</th>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="loading"><td colspan="4">loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="shareTable" class="col-sm-6">
+        <table class="table table-bordered table-condensed table-hover table-striped">
+          <caption>Share Table</caption>
+          <thead style="background-color:silver">
+            <tr>
+              <th>Id</th>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="loading"><td colspan="4">loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="jumbotron">
+      <p>
+        Basically TableDependency is an enhancement of .NET SqlDepenency/OracleDependency with the advantage of send events containing values for the record inserted, changed or deleted, as well as the DML operation (insert/delete/update) executed on the table.
+        This is the real difference with. NET SqlDepenency/OracleDependency : those classes, in fact, don't tell you what data was changed on the database.
+      </p>
+
+      <b>How to Test</b>
+      <p>
+        <ul>
+          <li>
+            Create a table as follow: CREATE TABLE [dbo].[Stocks]([Id] [int] NOT NULL, [Code] [nvarchar](50) NOT NULL, [Name] [nvarchar](50) NOT NULL, [Price] [decimal](18, 0) NOT NULL)
+          </li>
+          <li>Populate the table wit some data</li>
+          <li>Run the web application</li>
+          <li>Modify any data in the table to get an immediate notification with NO polling.</li>
+        </ul>
+      </p>
+    </div>
+
+  </div>
+
+  <section id="Sripts">
+    <script src="../Scripts/jquery-2.2.0.min.js"></script>
+    <script src="../Scripts/jquery.color-2.1.2.min.js"></script>
+    <script src="../Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="../signalr/hubs"></script>
+    <script src="../Scripts/app/SignalR.StockTicker.js"></script>
+  </section>
+</body>
+</html>
